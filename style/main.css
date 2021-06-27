@@ -27,19 +27,20 @@ li {
 
 body {
     font-family: "Nunito", "Courier New", Courier, monospace;
+    display: flex;
+    justify-content: center;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+    margin: 0 20px;
     overflow: hidden;
 }
 
 .header {
     background-color: var(--blue);
     width: 100%;
-    padding: 10px 0 30px 0;
+    padding: 100px 0 30px 0;
     text-align: center;
     color: var(--primary_2);
     display: flex;
@@ -76,8 +77,11 @@ body {
 }
 
 .header__top {
+    position: fixed;
+    top: 10px;
     height: 60px;
-    width: 100%;
+    width: calc(100vw - 40px);
+    max-width: 1200px;
     background-color: var(--primary_1);
     display: grid;
     grid-template-columns: 50px auto auto auto;
@@ -87,13 +91,17 @@ body {
     align-items: center;
     text-align: left;
 
+    box-shadow: 0px 14px 24px rgb(0 0 0 / 16%);
+
     padding: 0 20px;
-    margin-bottom: 25px;
+    z-index: 100;
+    transition: 0.2s;
 }
 
 .header__top .logo {
     font-size: 2.5rem;
     margin-right: 15px;
+    z-index: 999;
 }
 
 .header__top > a {
@@ -255,14 +263,163 @@ body {
 }
 
 .order form {
-    background-color: var(--primary_1);
+    /* background-color: var(--primary_1);
     color: var(--primary_2);
     border-radius: 0 0 15px 15px;
     padding: 20px 50px 25px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        ". w ."
+        "h i l"
+        "n p e"
+        "a a s"
+        "b b b";
+    grid-gap: 20px;
+    align-items: center; */
+
+    color: var(--primary_2);
+    background-color: var(--primary_1);
+    border-radius: 0 0 15px 15px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 19% 38% 43%;
+    grid-template-areas:
+        ". w n"
+        "h i p"
+        "h i e"
+        "h i a"
+        "l l s";
+    /* column-gap: 30px;
+    row-gap: 25px; */
 }
+
+.order form #width {
+    grid-area: w;
+}
+
+.order form #height {
+    grid-area: h;
+}
+
+.order form img {
+    grid-area: i;
+    height: 100%;
+    max-width: 100%;
+    align-self: center;
+    justify-self: center;
+    padding: 13px 15px;
+    align-self: center;
+}
+
+.order form .form_list {
+    grid-area: l;
+    height: 190px;
+    overflow-y: scroll;
+    background-color: var(--primary_2);
+    border-radius: 15px;
+    color: var(--primary_1);
+    margin: 30px 15px 15px 15px;
+    padding: 15px 15px 0 15px;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: var(--primary_1);
+    border-radius: 50%;
+}
+
+label:hover input ~ .checkmark {
+    box-shadow: 0 0 0 2px var(--blue);
+}
+
+.container input:checked ~ .checkmark::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--blue);
+}
+
+.form_list::-webkit-scrollbar {
+    width: 18px;
+}
+
+.form_list::-webkit-scrollbar-track {
+    background-color: #d0d0d0;
+    border-radius: 15px;
+}
+
+.form_list::-webkit-scrollbar-thumb {
+    background-color: var(--blue);
+    border-radius: 15px;
+}
+
+.order form #name {
+    grid-area: n;
+}
+
+.order form #phone {
+    grid-area: p;
+}
+
+.order form #address {
+    grid-area: a;
+}
+
+.order form #submit {
+    grid-area: s;
+    align-self: flex-end;
+    margin-bottom: 15px;
+}
+
+.order form #email {
+    grid-area: e;
+}
+
+.form_bottom {
+    grid-area: b;
+    font-size: 18px;
+    margin: 30px 15px 0px 15px;
+}
+
+/* .order form > .form_list {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    flex-basis: 100%;
+} */
 
 .order > div {
     background-color: var(--blue);
@@ -273,20 +430,33 @@ body {
     color: var(--primary_2);
 }
 
-.order form div {
-    width: 100%;
-    padding-top: 20px;
-    text-align: center;
-}
-
 .order input {
-    width: 22%;
-    margin: 10px 0;
-    height: 30px;
+    max-width: 100%;
+    height: 35px;
     border-radius: 5px;
     outline: none;
     border: none;
-    padding: 0 8px;
+    padding-left: 10px;
+    margin: 13px 15px;
+    align-self: center;
+}
+
+.order .form_list input {
+    max-width: 100%;
+    height: 15px;
+    margin: 15px;
+    align-self: center;
+    justify-self: right;
+}
+
+.order .form_list input:last-child {
+    margin-bottom: 15px;
+}
+
+.order input::placeholder {
+    font-family: "Nunito", "Courier New", Courier, monospace;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .order input:hover,
@@ -393,6 +563,35 @@ footer {
     }
 } */
 
+.uparrow {
+    background-color: rgba(255, 255, 255, 0.466);
+    color: var(--primary_1);
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    right: 32px;
+    bottom: 12px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    transform: rotate(-90deg);
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.uparrow.active {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+/* .uparrow.active:hover {
+    box-shadow: inset 0 0 0 2px var(--blue);
+} */
+
 @media screen and (max-width: 1024px) {
     .burger_menu_btn {
         position: fixed !important;
@@ -402,6 +601,7 @@ footer {
         height: 15px !important;
         right: 45px !important;
         top: 32px;
+        transition: 0.3s;
     }
 
     .burger_menu_btn::after {
@@ -535,10 +735,10 @@ footer {
 }
 
 @media screen and (max-width: 840px) {
-    .order input {
+    /* .order input {
         width: 40%;
         height: 40px;
-    }
+    } */
 }
 
 @media screen and (max-width: 765px) {
@@ -583,18 +783,21 @@ footer {
         max-width: 90%;
     }
 
-    .order input {
+    /* .order input {
         width: 100%;
-    }
+    } */
 }
 
 @media screen and (max-width: 425px) {
+    .header__top {
+        width: 100%;
+    }
     .header__top > a {
         display: none;
     }
 
     .container {
-        padding: 0;
+        margin: 0;
     }
 
     .splide__slide img {
@@ -618,5 +821,9 @@ footer {
 
     footer {
         font-size: 13px;
+    }
+
+    .uparrow {
+        right: 25px !important;
     }
 }
