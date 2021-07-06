@@ -762,6 +762,41 @@ footer {
     .header > div:last-child {
         width: 80%;
     }
+
+    .order form {
+        color: var(--primary_2);
+        background-color: var(--primary_1);
+        border-radius: 0 0 15px 15px;
+        padding: 30px;
+        display: grid;
+        grid-template-columns: 19% 38% 43%;
+        /* grid-template-areas: 
+            ". w n"
+            "h i p"
+            "h i e"
+            "h i a"
+            "l l s"; */
+        grid-template-areas: 
+            "w w w"
+            "h h h"
+            "l l l"
+            "n n n"
+            "p p p"
+            "e e e"
+            "a a a"
+            "s s s";
+    }
+
+    .order form img{
+        display: none;
+    }
+
+    .order form .form_list {
+        margin: 15px 15px 15px 15px;
+        box-shadow: 0px 14px 24px rgb(0 0 0 / 20%);
+    }
+
+    
 }
 
 @media screen and (max-width: 640px) {
