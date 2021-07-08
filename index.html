@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./style/main.css" />
     <link rel="stylesheet" href="./style/splide-skyblue.min.css" />
     <link rel="stylesheet" href="./style/iconmonstr-iconic-font.min.css">
+    <script src="./script/jquery-3.6.0.min.js"></script>
     <script src="./script/main.js"></script>
     <script src="./script/burger.js"></script>
 </head>
@@ -95,7 +96,7 @@
             <h2>Как заказазать</h2>
             <div>Для того, чтобы купить автоматические ворота или проконсультироваться с нашими специалистами,
                 позвоните по телефону 8 (999) 999-99-99 или оставьте заявку через форму заказа</div>
-            <form>
+            <form id="form" action="send.php">
                 <div></div>
                 <input type="number" name="width" id="width" placeholder="Ширина (мм)" required>
                 <input type="number" name="height" id="height" placeholder="Высота (мм)" required>
@@ -103,32 +104,33 @@
                 <div class="form_list">
 
                     <label for="gate_type_1">Ворота 1-го типа
-                        <input type="radio" value="1" id="gate_type_1" name="gate_type" checked="checked">
+                        <input type="radio" value="Ворота 1-го типа" id="gate_type_1" name="gate_type"
+                            checked="checked">
                         <span class="checkmark"></span>
                     </label>
                     <label for="gate_type_2">Ворота 2-го типа
-                        <input type="radio" value="2" id="gate_type_2" name="gate_type">
+                        <input type="radio" value="Ворота 2-го типа" id="gate_type_2" name="gate_type">
                         <span class="checkmark"></span>
                     </label>
                     <label for="gate_type_3">Ворота 3-го типа
-                        <input type="radio" value="3" id="gate_type_3" name="gate_type">
+                        <input type="radio" value="Ворота 3-го типа" id="gate_type_3" name="gate_type">
                         <span class="checkmark"></span>
                     </label>
                     <label for="gate_type_4">Ворота 4-го типа
-                        <input type="radio" value="4" id="gate_type_4" name="gate_type">
+                        <input type="radio" value="Ворота 4-го типа" id="gate_type_4" name="gate_type">
                         <span class="checkmark"></span>
                     </label>
                     <label for="gate_type_5">Ворота 5-го типа
-                        <input type="radio" value="5" id="gate_type_5" name="gate_type">
+                        <input type="radio" value="Ворота 5-го типа" id="gate_type_5" name="gate_type">
                         <span class="checkmark"></span>
                     </label>
                     <label for="gate_type_6">Ворота 6-го типа
-                        <input type="radio" value="6" id="gate_type_6" name="gate_type">
+                        <input type="radio" value="Ворота 6-го типа" id="gate_type_6" name="gate_type">
                         <span class="checkmark"></span>
                     </label>
                 </div>
                 <input type="text" name="name" id="name" placeholder="ФИО" required>
-                <input type="phone" name="phone" id="phone" placeholder="Номер телефона" required>
+                <input type="tel" name="phone" id="phone" placeholder="Телефон (с +7)" pattern="\+7[0-9]{10}" required>
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <input type="text" name="address" id="address" placeholder="Адрес установки ворот" required>
                 <input type="submit" id="submit" value="Отправить заявку">
@@ -184,6 +186,9 @@
         <footer>
             © 2021 Компания «Северо-Западный Синдикат»
         </footer>
+    </div>
+    <div class="form_popup">
+        <span>Заявка успешно отправлена!</span>
     </div>
     <script src="./script/splide.min.js"></script>
     <script>
